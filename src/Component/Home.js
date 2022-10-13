@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
-import axios from 'axios';
-import {Link} from 'react-router-dom'
+//import axios from 'axios';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 class Home extends Component{
-  state = {
+  /*state = {
     posts:[]
   };
   componentDidMount(){
@@ -13,10 +14,11 @@ class Home extends Component{
       })
     })
   }
+  */
   
   render(){
-    const {posts} = this.state;
-    const listPosts = posts.length?(
+    const {posts} = this.props;
+    const listPosts = posts.length ? (
       posts.map(post=>{
         return (
   <div class="post card blue-grey darken-3" key ={post.id}>
@@ -41,4 +43,9 @@ class Home extends Component{
     )
   }
 }
-export default Home 
+const mapStateToProps =(state)=>{
+  return{
+    posts:state.posts
+  }
+}
+export default connect(mapStateToProps)(Home);
